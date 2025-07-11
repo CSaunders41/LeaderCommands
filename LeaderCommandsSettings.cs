@@ -11,136 +11,122 @@ namespace LeaderCommands
         [Menu("Enable Plugin")]
         public ToggleNode Enable { get; set; } = new ToggleNode(true);
 
-        [Menu("Network Communication", "Network Communication Settings")]
-        public EmptyNode NetworkSettings { get; set; } = new EmptyNode();
-
-        [Menu("Enable Network Communication", "Enable TCP communication with followers", parentIndex = 1)]
+        // Network Communication Settings
+        [Menu("Enable Network Communication", "Enable TCP communication with followers")]
         public ToggleNode EnableNetworkCommunication { get; set; } = new ToggleNode(true);
 
-        [Menu("Server Port", "TCP server port for follower connections", parentIndex = 1)]
+        [Menu("Server Port", "TCP server port for follower connections")]
         public RangeNode<int> ServerPort { get; set; } = new RangeNode<int>(7777, 1024, 65535);
 
-        [Menu("Enable Auto-Discovery", "Enable UDP broadcast for automatic follower discovery", parentIndex = 1)]
+        [Menu("Enable Auto-Discovery", "Enable UDP broadcast for automatic follower discovery")]
         public ToggleNode EnableAutoDiscovery { get; set; } = new ToggleNode(true);
 
-        [Menu("Discovery Port", "UDP port for auto-discovery broadcasts", parentIndex = 1)]
+        [Menu("Discovery Port", "UDP port for auto-discovery broadcasts")]
         public RangeNode<int> DiscoveryPort { get; set; } = new RangeNode<int>(7778, 1024, 65535);
 
-        [Menu("Hotkeys", "Hotkey Configuration")]
-        public EmptyNode HotkeySettings { get; set; } = new EmptyNode();
-
-        [Menu("Stash Items Key", "Hotkey to send stash items command", parentIndex = 2)]
+        // Hotkey Settings
+        [Menu("Stash Items Key", "Hotkey to send stash items command")]
         public HotkeyNode StashItemsKey { get; set; } = new HotkeyNode(Keys.F5);
 
-        [Menu("Sell Items Key", "Hotkey to send sell items command", parentIndex = 2)]
+        [Menu("Sell Items Key", "Hotkey to send sell items command")]
         public HotkeyNode SellItemsKey { get; set; } = new HotkeyNode(Keys.F6);
 
-        [Menu("Accept Trade Key", "Hotkey to send accept trade command", parentIndex = 2)]
+        [Menu("Accept Trade Key", "Hotkey to send accept trade command")]
         public HotkeyNode AcceptTradeKey { get; set; } = new HotkeyNode(Keys.F7);
 
-        [Menu("Emergency Stop Key", "Hotkey to send emergency stop command", parentIndex = 2)]
+        [Menu("Emergency Stop Key", "Hotkey to send emergency stop command")]
         public HotkeyNode EmergencyStopKey { get; set; } = new HotkeyNode(Keys.F12);
 
-        [Menu("Command Settings", "Command Configuration")]
-        public EmptyNode CommandSettings { get; set; } = new EmptyNode();
-
-        [Menu("Enable Stash Commands", "Allow sending stash commands to followers", parentIndex = 3)]
+        // Command Settings
+        [Menu("Enable Stash Commands", "Allow sending stash commands to followers")]
         public ToggleNode EnableStashCommands { get; set; } = new ToggleNode(true);
 
-        [Menu("Enable Sell Commands", "Allow sending sell commands to followers", parentIndex = 3)]
+        [Menu("Enable Sell Commands", "Allow sending sell commands to followers")]
         public ToggleNode EnableSellCommands { get; set; } = new ToggleNode(true);
 
-        [Menu("Enable Trade Commands", "Allow sending trade commands to followers", parentIndex = 3)]
+        [Menu("Enable Trade Commands", "Allow sending trade commands to followers")]
         public ToggleNode EnableTradeCommands { get; set; } = new ToggleNode(true);
 
-        [Menu("Command Cooldown (ms)", "Minimum time between same commands", parentIndex = 3)]
+        [Menu("Command Cooldown (ms)", "Minimum time between same commands")]
         public RangeNode<int> CommandCooldown { get; set; } = new RangeNode<int>(2000, 500, 10000);
 
-        [Menu("Stash Settings", "Stash Configuration")]
-        public EmptyNode StashSettings { get; set; } = new EmptyNode();
-
-        [Menu("Stash Currency", "Stash currency items", parentIndex = 4)]
+        // Stash Settings
+        [Menu("Stash Currency", "Stash currency items")]
         public ToggleNode StashCurrency { get; set; } = new ToggleNode(true);
 
-        [Menu("Stash Maps", "Stash maps", parentIndex = 4)]
+        [Menu("Stash Maps", "Stash maps")]
         public ToggleNode StashMaps { get; set; } = new ToggleNode(true);
 
-        [Menu("Stash Gems", "Stash gems", parentIndex = 4)]
+        [Menu("Stash Gems", "Stash gems")]
         public ToggleNode StashGems { get; set; } = new ToggleNode(true);
 
-        [Menu("Stash Uniques", "Stash unique items", parentIndex = 4)]
+        [Menu("Stash Uniques", "Stash unique items")]
         public ToggleNode StashUniques { get; set; } = new ToggleNode(true);
 
-        [Menu("Stash Rares", "Stash rare items", parentIndex = 4)]
+        [Menu("Stash Rares", "Stash rare items")]
         public ToggleNode StashRares { get; set; } = new ToggleNode(false);
 
-        [Menu("Stash Divination Cards", "Stash divination cards", parentIndex = 4)]
+        [Menu("Stash Divination Cards", "Stash divination cards")]
         public ToggleNode StashDivCards { get; set; } = new ToggleNode(true);
 
-        [Menu("Stash Fragments", "Stash fragments", parentIndex = 4)]
+        [Menu("Stash Fragments", "Stash fragments")]
         public ToggleNode StashFragments { get; set; } = new ToggleNode(true);
 
-        [Menu("Stash Essences", "Stash essences", parentIndex = 4)]
+        [Menu("Stash Essences", "Stash essences")]
         public ToggleNode StashEssences { get; set; } = new ToggleNode(true);
 
-        [Menu("Stash Fossils", "Stash fossils", parentIndex = 4)]
+        [Menu("Stash Fossils", "Stash fossils")]
         public ToggleNode StashFossils { get; set; } = new ToggleNode(true);
 
-        [Menu("Stash Resonators", "Stash resonators", parentIndex = 4)]
+        [Menu("Stash Resonators", "Stash resonators")]
         public ToggleNode StashResonators { get; set; } = new ToggleNode(true);
 
-        [Menu("Stash Scarabs", "Stash scarabs", parentIndex = 4)]
+        [Menu("Stash Scarabs", "Stash scarabs")]
         public ToggleNode StashScarabs { get; set; } = new ToggleNode(true);
 
-        [Menu("Stash Incubators", "Stash incubators", parentIndex = 4)]
+        [Menu("Stash Incubators", "Stash incubators")]
         public ToggleNode StashIncubators { get; set; } = new ToggleNode(true);
 
-        [Menu("Stash Flasks", "Stash flasks", parentIndex = 4)]
+        [Menu("Stash Flasks", "Stash flasks")]
         public ToggleNode StashFlasks { get; set; } = new ToggleNode(false);
 
-        [Menu("Sell Settings", "Sell Configuration")]
-        public EmptyNode SellSettings { get; set; } = new EmptyNode();
-
-        [Menu("Sell White Items", "Sell white (normal) items", parentIndex = 5)]
+        // Sell Settings
+        [Menu("Sell White Items", "Sell white (normal) items")]
         public ToggleNode SellWhiteItems { get; set; } = new ToggleNode(true);
 
-        [Menu("Sell Blue Items", "Sell blue (magic) items", parentIndex = 5)]
+        [Menu("Sell Blue Items", "Sell blue (magic) items")]
         public ToggleNode SellBlueItems { get; set; } = new ToggleNode(true);
 
-        [Menu("Sell Yellow Items", "Sell yellow (rare) items", parentIndex = 5)]
+        [Menu("Sell Yellow Items", "Sell yellow (rare) items")]
         public ToggleNode SellYellowItems { get; set; } = new ToggleNode(false);
 
-        [Menu("Sell Min Level", "Minimum item level to sell", parentIndex = 5)]
+        [Menu("Sell Min Level", "Minimum item level to sell")]
         public RangeNode<int> SellMinLevel { get; set; } = new RangeNode<int>(1, 1, 100);
 
-        [Menu("Sell Max Level", "Maximum item level to sell", parentIndex = 5)]
+        [Menu("Sell Max Level", "Maximum item level to sell")]
         public RangeNode<int> SellMaxLevel { get; set; } = new RangeNode<int>(60, 1, 100);
 
-        [Menu("Sell Weapons", "Sell weapons", parentIndex = 5)]
+        [Menu("Sell Weapons", "Sell weapons")]
         public ToggleNode SellWeapons { get; set; } = new ToggleNode(true);
 
-        [Menu("Sell Armor", "Sell armor", parentIndex = 5)]
+        [Menu("Sell Armor", "Sell armor")]
         public ToggleNode SellArmor { get; set; } = new ToggleNode(true);
 
-        [Menu("Sell Accessories", "Sell accessories (rings, amulets, belts)", parentIndex = 5)]
+        [Menu("Sell Accessories", "Sell accessories (rings, amulets, belts)")]
         public ToggleNode SellAccessories { get; set; } = new ToggleNode(true);
 
-        [Menu("Trade Settings", "Trade Configuration")]
-        public EmptyNode TradeSettings { get; set; } = new EmptyNode();
-
-        [Menu("Trade Whitelist", "Comma-separated list of allowed trader names", parentIndex = 6)]
+        // Trade Settings
+        [Menu("Trade Whitelist", "Comma-separated list of allowed trader names")]
         public TextNode TradeWhitelist { get; set; } = new TextNode("");
 
-        [Menu("Debug Settings", "Debug Configuration")]
-        public EmptyNode DebugSettings { get; set; } = new EmptyNode();
-
-        [Menu("Show Debug Info", "Show debug information overlay", parentIndex = 7)]
+        // Debug Settings
+        [Menu("Show Debug Info", "Show debug information overlay")]
         public ToggleNode ShowDebugInfo { get; set; } = new ToggleNode(false);
 
-        [Menu("Debug Position", "Position of debug information", parentIndex = 7)]
+        [Menu("Debug Position", "Position of debug information")]
         public RangeNode<Vector2> DebugPosition { get; set; } = new RangeNode<Vector2>(new Vector2(10, 300), new Vector2(0, 0), new Vector2(2000, 2000));
 
-        [Menu("Debug Text Color", "Color of debug text", parentIndex = 7)]
+        [Menu("Debug Text Color", "Color of debug text")]
         public ColorNode DebugTextColor { get; set; } = new ColorNode(Color.White);
     }
 } 
