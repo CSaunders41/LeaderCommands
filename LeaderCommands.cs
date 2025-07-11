@@ -322,42 +322,59 @@ namespace LeaderCommands
                 var jsonMessage = JsonConvert.SerializeObject(commandMessage);
                 var data = Encoding.UTF8.GetBytes(jsonMessage);
                 
+                List<TcpClient> followersToProcess;
                 List<TcpClient> followersToRemove = new List<TcpClient>();
                 
+                // Copy the followers list outside the lock
                 lock (_followersLock)
                 {
-                    foreach (var follower in _connectedFollowers.ToList())
+                    followersToProcess = _connectedFollowers.ToList();
+                }
+                
+                // Process followers outside the lock to allow async operations
+                foreach (var follower in followersToProcess)
+                {
+                    try
                     {
-                        try
+                        if (follower.Connected)
                         {
-                            if (follower.Connected)
-                            {
-                                var stream = follower.GetStream();
-                                await stream.WriteAsync(data, 0, data.Length);
-                                await stream.FlushAsync();
-                            }
-                            else
-                            {
-                                followersToRemove.Add(follower);
-                            }
+                            var stream = follower.GetStream();
+                            await stream.WriteAsync(data, 0, data.Length);
+                            await stream.FlushAsync();
                         }
-                        catch (Exception ex)
+                        else
                         {
-                            LogMessage($"Error sending command to follower: {ex.Message}", 1);
                             followersToRemove.Add(follower);
                         }
                     }
-                    
-                    // Remove disconnected followers
-                    foreach (var follower in followersToRemove)
+                    catch (Exception ex)
                     {
-                        _connectedFollowers.Remove(follower);
-                        follower?.Close();
+                        LogMessage($"Error sending command to follower: {ex.Message}", 1);
+                        followersToRemove.Add(follower);
+                    }
+                }
+                
+                // Remove disconnected followers with lock
+                if (followersToRemove.Count > 0)
+                {
+                    lock (_followersLock)
+                    {
+                        foreach (var follower in followersToRemove)
+                        {
+                            _connectedFollowers.Remove(follower);
+                            follower?.Close();
+                        }
                     }
                 }
                 
                 _lastCommandTimes[command] = DateTime.Now;
-                LogMessage($"Sent command {command} to {_connectedFollowers.Count} followers", 4);
+                
+                int currentFollowerCount;
+                lock (_followersLock)
+                {
+                    currentFollowerCount = _connectedFollowers.Count;
+                }
+                LogMessage($"Sent command {command} to {currentFollowerCount} followers", 4);
             }
             catch (Exception ex)
             {
